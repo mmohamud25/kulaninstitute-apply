@@ -214,6 +214,14 @@ footer { padding:32px 5%;text-align:center;font-size:13px;color:var(--text-light
   .btn-next, .btn-submit, .btn-back-step { width:100%; text-align:center; }
 }
 </style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GGBZJXPLRP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GGBZJXPLRP');
+</script>
 </head>
 <body>
 
@@ -526,10 +534,10 @@ footer { padding:32px 5%;text-align:center;font-size:13px;color:var(--text-light
 </div><!-- /page -->
 
 <footer>
-  &copy; 2026 Kulan Institute of Learning &bull; <a href="https://kulaninstitute.org" style="color:var(--cyan);text-decoration:none;">kulaninstitute.org</a> &bull; info@kulaninstitute.org
+  &copy; 2026 Kulan Institute of Learning &bull; <a href="https://kulaninstitute.org" style="color:var(--cyan);text-decoration:none;">kulaninstitute.org</a> &bull; <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6d04030b022d0618010c0304031e19041918190843021f0a">[email&#160;protected]</a>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── STATE ──────────────────────────────────────────────────────────
 var currentStep = 1;
 var totalSteps  = 4;
@@ -756,7 +764,7 @@ function submitApplication() {
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(formspreeData)
       }).then(function(r) {
-        if (r.ok) showSuccess();
+        if (r.ok) { if(typeof gtag!=='undefined') gtag('event','application_submit'); showSuccess(); }
         else { btn.disabled=false; btn.textContent='✓ Submit Application'; alert('Something went wrong. Please try again.'); }
       }).catch(function() {
         btn.disabled=false; btn.textContent='✓ Submit Application';
@@ -786,9 +794,4 @@ function showSuccess() {
   document.getElementById('successCard').innerHTML =
     '<div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-light);margin-bottom:14px;">Application Summary</div>' +
     '<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(11,31,58,0.06);font-size:14px;"><span style="color:var(--text-light);">Application ID</span><span style="font-weight:600;color:var(--navy);">' + appId + '</span></div>' +
-    '<div style="display:flex;justify-content:space-between;padding:10px 0;font-size:14px;"><span style="color:var(--text-light);">Response Time</span><span style="font-weight:600;color:var(--teal);">Within 48 hours</span></div>';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-</script>
-</body>
-</html>
+    '<div style="display:flex;justify-content:space-between;padding:10px 0;
