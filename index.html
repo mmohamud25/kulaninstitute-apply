@@ -526,7 +526,7 @@ footer { padding:32px 5%;text-align:center;font-size:13px;color:var(--text-light
 </div><!-- /page -->
 
 <footer>
-  &copy; 2026 Kulan Institute of Learning &bull; <a href="https://kulaninstitute.org" style="color:var(--cyan);text-decoration:none;">kulaninstitute.org</a> &bull; <a href="mailto:info@kulaninstitute.org" style="color:var(--text-light);text-decoration:none;">info@kulaninstitute.org</a>
+  &copy; 2026 Kulan Institute of Learning &bull; <a href="https://kulaninstitute.org" style="color:var(--cyan);text-decoration:none;">kulaninstitute.org</a> &bull; info@kulaninstitute.org
 </footer>
 
 <script>
@@ -781,9 +781,13 @@ function showSuccess() {
   }
   // Generate app ID
   var appId = 'KI-APP-' + Date.now().toString().slice(-6).toUpperCase();
-  document.getElementById('appId').textContent = appId;
-  document.getElementById('successState').classList.add('show');
-  document.getElementById('formCard').scrollIntoView({ behavior:'smooth', block:'start' });
+  document.querySelectorAll('.step-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.getElementById('successState').classList.add('visible');
+  document.getElementById('successCard').innerHTML =
+    '<div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-light);margin-bottom:14px;">Application Summary</div>' +
+    '<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(11,31,58,0.06);font-size:14px;"><span style="color:var(--text-light);">Application ID</span><span style="font-weight:600;color:var(--navy);">' + appId + '</span></div>' +
+    '<div style="display:flex;justify-content:space-between;padding:10px 0;font-size:14px;"><span style="color:var(--text-light);">Response Time</span><span style="font-weight:600;color:var(--teal);">Within 48 hours</span></div>';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
 </body>
